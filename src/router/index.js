@@ -28,13 +28,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      next({ path: '/' });
-    } else {
-      next();
-    }
+  const token = localStorage.getItem('token');
+  if (to.matched.some(record => record.meta.requiresAuth) && !token) {
+    next({ path: '/' });
   } else {
     next();
   }
