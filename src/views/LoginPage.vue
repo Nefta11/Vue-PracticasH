@@ -31,6 +31,7 @@
 
 <script>
 import { loginUser } from "../services/Api";
+import Swal from "sweetalert2";
 
 export default {
   data() {
@@ -46,9 +47,19 @@ export default {
       try {
         const user = { email: this.email, password: this.password };
         await loginUser(user);
+        Swal.fire({
+          icon: 'success',
+          title: 'Inicio de sesión exitoso',
+          text: 'Has iniciado sesión correctamente',
+        });
         this.$router.push("/home");
       } catch (err) {
         this.error = err.message;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: this.error,
+        });
       }
     },
   },

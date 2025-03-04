@@ -63,6 +63,8 @@
 
 <script>
 import { createUser } from "../services/Api";
+import Swal from "sweetalert2";
+
 export default {
   data() {
     return {
@@ -94,9 +96,19 @@ export default {
           fechaActualizacion: new Date(),
         };
         await createUser(user);
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso',
+          text: 'El usuario ha sido registrado correctamente',
+        });
         this.$router.push("/");
       } catch (err) {
         this.error = err.message;
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: this.error,
+        });
       }
     },
   },
