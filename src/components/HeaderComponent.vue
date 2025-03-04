@@ -1,21 +1,30 @@
 <template>
-  <HeaderComponent />
-  <div>
-    <h1>Bienvenido a la Página de Inicio</h1>
+  <div class="header">
+    <h1>Bienvenido, {{ userName }}</h1>
+    <div class="user-menu">
+      <font-awesome-icon icon="user" @click="toggleMenu" />
+      <div v-if="menuVisible" class="dropdown-menu">
+        <ul>
+          <li @click="viewData">Ver mis datos</li>
+          <li @click="logout">Cerrar sesión</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 library.add(faUser);
 
 export default {
-  name: 'HomePage',
+  name: 'HeaderComponent',
   components: {
-    HeaderComponent },
+    FontAwesomeIcon
+  },
   data() {
     return {
       userName: '',
@@ -49,40 +58,42 @@ export default {
 </script>
 
 <style scoped>
-
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: red; /* Cambiar color de la barra de navegación a rojo */
-  border-bottom: 1px solid #ddd;
-  width: 100%; /* Hacer el header más largo */
-  position: fixed; /* Fijar el header en la parte superior */
+  background-color: #4cc9f0;
+  border-bottom: 2px solid #ddd;
+  width: 100%;
+  position: fixed;
   top: 0;
-  left: 0;
-  z-index: 1000; /* Asegurar que el header esté por encima de otros elementos */
+  left: 120;
+  z-index: 1000;
 }
 
-body {
-  background-color: white; /* Cambiar el fondo de toda la web a blanco */
-  margin-top: 60px; /* Añadir margen superior para evitar que el contenido quede debajo del header */
+.header h1 {
+  flex: 1;
+  text-align: center;
 }
+
 
 .user-menu {
   position: relative;
+  margin-right: 100px; /* Ajustar margen derecho para que el icono no se desplace tanto */
 }
 
 .user-menu .fa-icon {
   cursor: pointer;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 .dropdown-menu {
   position: absolute;
   top: 50px;
   right: 0;
+  height: 80px;
+  width: 120px;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
