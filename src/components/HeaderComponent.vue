@@ -63,28 +63,28 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #4cc9f0; /* Cambiar color de la barra de navegación a rojo */
+  background-color: #4cc9f0;
   border-bottom: 1px solid #ddd;
-  width: 100%; /* Hacer el header más largo */
-  position: fixed; /* Fijar el header en la parte superior */
+  width: 100%;
+  position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000; /* Asegurar que el header esté por encima de otros elementos */
+  z-index: 1000;
 }
 
 .header-component h1 {
   flex: 1;
-  text-align: center; /* Centrar el título de bienvenida */
+  text-align: center;
 }
 
 .user-menu {
   position: relative;
-  margin-right: 40px; /* Ajustar margen derecho para que el icono no se desplace tanto */
+  margin-right: 40px;
 }
 
 .user-menu .fa-icon {
   cursor: pointer;
-  font-size: 50px; /* Aumentar el tamaño del icono */
+  font-size: 150px;
 }
 
 .dropdown-menu {
