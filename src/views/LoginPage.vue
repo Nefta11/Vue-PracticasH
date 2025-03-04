@@ -1,32 +1,30 @@
 <template>
-  <div class="container">
-    <div class="left-section">
-      <img src="/src/assets/log.jpg" alt="Imagen de Publicidad" class="image" />
+  <div class="login-container">
+    <div class="login-left-section">
+      <img src="/src/assets/log.jpg" alt="Imagen de Publicidad" class="login-image" />
     </div>
-    <div class="right-section">
-      <h2 class="hello">¡Hola!</h2>
-      <p class="subtitle">
+    <div class="login-right-section">
+      <h2 class="login-hello">¡Hola!</h2>
+      <p class="login-subtitle">
         Bienvenido de nuevo, por favor ingresa tus datos para continuar.
       </p>
-      <form @submit.prevent="login" class="form">
-        <div class="input-group">
+      <form @submit.prevent="login" class="login-form">
+        <div class="login-input-group">
           <label for="email">Correo Electrónico</label>
           <input type="email" v-model="email" required />
         </div>
-        <div class="input-group">
+        <div class="login-input-group">
           <label for="password">Contraseña</label>
           <input type="password" v-model="password" required />
         </div>
-        <div class="options">
-          <label
-            ><input type="checkbox" v-model="rememberMe" /> Recuérdame</label
-          >
-          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+        <div class="login-options">
+          <label><input type="checkbox" v-model="rememberMe" /> Recuérdame</label>
+          <a href="#" class="login-forgot-password">¿Olvidaste tu contraseña?</a>
         </div>
-        <button type="submit" class="btn">Iniciar Sesión</button>
+        <button type="submit" class="login-btn">Iniciar Sesión</button>
       </form>
-      <p class="signup">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
-      <p v-if="error" class="error">{{ error }}</p>
+      <p class="login-signup">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
+      <p v-if="error" class="login-error">{{ error }}</p>
     </div>
   </div>
 </template>
@@ -69,7 +67,7 @@ body {
   height: 100vh;
 }
 
-.container {
+.login-container {
   display: flex;
   width: 1100px;
   height: 600px;
@@ -79,7 +77,7 @@ body {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.left-section {
+.login-left-section {
   width: 80%;
   background-color: #0b1522;
   display: flex;
@@ -87,13 +85,13 @@ body {
   align-items: center;
 }
 
-.image {
+.login-image {
   max-width: 1200px;
   max-height: 900px;
   border-radius: 10px;
 }
 
-.right-section {
+.login-right-section {
   width: 60%;
   padding: 40px;
   display: flex;
@@ -101,41 +99,41 @@ body {
   justify-content: center;
 }
 
-.hello{
+.login-hello {
   font-size: 40px;
   margin-bottom: 10px;
   align-items: center;
   text-align: center;
 }
 
-.subtitle {
+.login-subtitle {
   color: gray;
   font-size: 14px;
 }
 
-.form {
+.login-form {
   margin-top: 20px;
 }
 
-.input-group {
+.login-input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
 }
 
-.input-group label {
+.login-input-group label {
   font-size: 14px;
   margin-bottom: 5px;
 }
 
-.input-group input {
+.login-input-group input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
 }
 
-.options {
+.login-options {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -143,16 +141,16 @@ body {
   margin-bottom: 15px;
 }
 
-.options input {
+.login-options input {
   margin-right: 5px;
 }
 
-.forgot-password {
+.login-forgot-password {
   color: #4cc9f0;
   text-decoration: none;
 }
 
-.btn {
+.login-btn {
   width: 100%;
   background-color: #4cc9f0;
   color: white;
@@ -163,22 +161,22 @@ body {
   cursor: pointer;
 }
 
-.btn:hover {
+.login-btn:hover {
   background-color: #3bb2d9;
 }
 
-.signup {
+.login-signup {
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
 }
 
-.signup a {
+.login-signup a {
   color: #4cc9f0;
   text-decoration: none;
 }
 
-.error {
+.login-error {
   color: red;
   text-align: center;
   margin-top: 10px;
