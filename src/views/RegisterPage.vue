@@ -52,6 +52,7 @@
         </div>
         <button type="submit" class="register-btn">Registrar</button>
       </form>
+      <p class="login-signup">¿Ya tienes cuenta?<a href="/"> Inicia sesión</a></p>
       <p v-if="error" class="register-error">{{ error }}</p>
     </div>
     <div class="register-right-section">
@@ -193,5 +194,34 @@ body {
   color: red;
   text-align: center;
   margin-top: 10px;
+}
+
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #4cc9f0;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3bb2d9;
+  text-decoration: underline;
+}
+
+.login-signup {
+  text-align: center;
+  margin-top: 10px;
+  color: black;
+}
+
+.login-signup a {
+  color: #4cc9f0;
+  text-decoration: none;
+}
+
+.login-signup a:hover {
+  color: #3bb2d9;
+  text-decoration: underline;
 }
 </style>
