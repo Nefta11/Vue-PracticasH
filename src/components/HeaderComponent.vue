@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header-component">
     <h1>Bienvenido, {{ userName }}</h1>
     <div class="user-menu">
       <font-awesome-icon icon="user" @click="toggleMenu" />
@@ -58,42 +58,39 @@ export default {
 </script>
 
 <style scoped>
-.header {
+.header-component {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #4cc9f0;
-  border-bottom: 2px solid #ddd;
-  width: 100%;
-  position: fixed;
+  background-color: red; /* Cambiar color de la barra de navegación a rojo */
+  border-bottom: 1px solid #ddd;
+  width: 100%; /* Hacer el header más largo */
+  position: fixed; /* Fijar el header en la parte superior */
   top: 0;
-  left: 120;
-  z-index: 1000;
+  left: 0;
+  z-index: 1000; /* Asegurar que el header esté por encima de otros elementos */
 }
 
-.header h1 {
+.header-component h1 {
   flex: 1;
-  text-align: center;
+  text-align: center; /* Centrar el título de bienvenida */
 }
-
 
 .user-menu {
   position: relative;
-  margin-right: 100px; /* Ajustar margen derecho para que el icono no se desplace tanto */
+  margin-right: 40px; /* Ajustar margen derecho para que el icono no se desplace tanto */
 }
 
 .user-menu .fa-icon {
   cursor: pointer;
-  font-size: 50px;
+  font-size: 50px; /* Aumentar el tamaño del icono */
 }
 
 .dropdown-menu {
   position: absolute;
   top: 50px;
   right: 0;
-  height: 80px;
-  width: 120px;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
