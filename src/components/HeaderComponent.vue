@@ -79,7 +79,8 @@ export default {
 
 .user-menu {
   position: relative;
-  margin-right: 40px;
+  margin-right: 70px;
+  font-size: 34px;
 }
 
 .user-menu .fa-icon {
