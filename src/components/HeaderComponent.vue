@@ -80,18 +80,21 @@ export default {
 .user-menu {
   position: relative;
   margin-right: 70px;
-  font-size: 34px;
+  font-size: 34px; /* Aplica solo al contenedor */
 }
 
 .user-menu .fa-icon {
   cursor: pointer;
-  font-size: 150px;
+  font-size: 34px; /* Aplica solo al icono */
 }
 
 .dropdown-menu {
   position: absolute;
   top: 50px;
-  right: 0;
+  right: -10px;
+  height: auto;
+  align-items: center;
+  width: 120px;
   background-color: white;
   border: 1px solid #ddd;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -101,11 +104,13 @@ export default {
   list-style: none;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 .dropdown-menu li {
   padding: 10px;
   cursor: pointer;
+  font-size: 14px; /* Tamaño de fuente más pequeño para los textos del menú */
 }
 
 .dropdown-menu li:hover {
