@@ -14,21 +14,21 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faUser);
 
 export default {
-  name: 'HeaderComponent',
+  name: "HeaderComponent",
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
   },
   data() {
     return {
-      userName: '',
-      menuVisible: false
+      userName: "",
+      menuVisible: false,
     };
   },
   created() {
@@ -36,12 +36,12 @@ export default {
   },
   methods: {
     getUserNameFromToken() {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (token) {
-        const payload = JSON.parse(atob(token.split('.')[1]));
-        return `${payload.nombre}` || 'Usuario';
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        return `${payload.nombre}` || "Usuario";
       }
-      return 'Usuario';
+      return "Usuario";
     },
     toggleMenu() {
       this.menuVisible = !this.menuVisible;
@@ -50,10 +50,10 @@ export default {
       // Implementar lógica para ver datos del usuario
     },
     logout() {
-      localStorage.removeItem('token');
-      this.$router.push('/');
-    }
-  }
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+  },
 };
 </script>
 
@@ -63,7 +63,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: red; /* Cambiar color de la barra de navegación a rojo */
+  background-color: #4cc9f0; /* Cambiar color de la barra de navegación a rojo */
   border-bottom: 1px solid #ddd;
   width: 100%; /* Hacer el header más largo */
   position: fixed; /* Fijar el header en la parte superior */
