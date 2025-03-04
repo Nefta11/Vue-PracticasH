@@ -48,19 +48,19 @@
 </template>
 
 <script>
-import { createUser } from '../services/Api';
+import { createUser } from "../services/Api";
 export default {
   data() {
     return {
-      nombre: '',
-      primerApellido: '',
-      segundoApellido: '',
-      tipoUsuario: 'Alumno',
-      nombreUsuario: '',
-      email: '',
-      password: '',
-      numeroTelefono: '',
-      error: ''
+      nombre: "",
+      primerApellido: "",
+      segundoApellido: "",
+      tipoUsuario: "Alumno",
+      nombreUsuario: "",
+      email: "",
+      password: "",
+      numeroTelefono: "",
+      error: "",
     };
   },
   methods: {
@@ -75,16 +75,16 @@ export default {
           correoElectronico: this.email,
           contrasena: this.password,
           numeroTelefono: this.numeroTelefono,
-          estatus: 'Activo',
+          estatus: "Activo",
           fechaRegistro: new Date(),
-          fechaActualizacion: new Date()
+          fechaActualizacion: new Date(),
         };
         await createUser(user);
-        this.$router.push('/');
+        this.$router.push("/");
       } catch (err) {
         this.error = err.message;
       }
-    }
-  }
+    },
+  },
 };
 </script>
