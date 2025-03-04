@@ -1,13 +1,10 @@
 <template>
   <div class="container">
     <div class="left-section">
-      <h2 class="branding">Blokchain</h2>
-      <h1 class="title">Revolución en Publicidad</h1>
-      <p class="features">BAJAS TARIFAS • RESISTENTE A LA CENSURA • LISTO PARA IA</p>
-      <div class="logo">ADSHARES</div>
+      <img src="/src/assets/log.jpg" alt="Imagen de Publicidad" class="image" />
     </div>
     <div class="right-section">
-      <h2>¡Hola!</h2>
+      <h2 class="hello">¡Hola!</h2>
       <p class="subtitle">
         Etiam pretium dapibus congue. Praesent a lorem erat. Morbi mollis
         posuere lacus, vel semper risus.
@@ -75,8 +72,8 @@ body {
 
 .container {
   display: flex;
-  width: 900px;
-  height: 500px;
+  width: 1100px;
+  height: 600px;
   background-color: white;
   border-radius: 10px;
   overflow: hidden;
@@ -84,36 +81,17 @@ body {
 }
 
 .left-section {
-  width: 40%;
+  width: 80%;
   background-color: #0b1522;
-  color: white;
-  padding: 40px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
-.branding {
-  color: rgba(255, 255, 255, 0.3);
-  font-size: 24px;
-  margin: 0;
-}
-
-.title {
-  font-size: 28px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.features {
-  font-size: 12px;
-  color: #4cc9f0;
-}
-
-.logo {
-  margin-top: auto;
-  font-size: 16px;
-  font-weight: bold;
+.image {
+  max-width: 1200px;
+  max-height: 900px;
+  border-radius: 10px;
 }
 
 .right-section {
@@ -122,6 +100,13 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hello{
+  font-size: 40px;
+  margin-bottom: 10px;
+  align-items: center;
+  text-align: center;
 }
 
 .subtitle {
