@@ -17,6 +17,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import Swal from 'sweetalert2';
 
 library.add(faUser);
 
@@ -50,8 +51,18 @@ export default {
       // Implementar lógica para ver datos del usuario
     },
     logout() {
-      localStorage.removeItem("token");
-      this.$router.push("/");
+      Swal.fire({
+        title: '¿Estás seguro de cerrar sesión?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, cerrar sesión',
+        cancelButtonText: 'No, cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.removeItem("token");
+          this.$router.push("/");
+        }
+      });
     },
   },
 };
