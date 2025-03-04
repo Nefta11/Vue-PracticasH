@@ -52,6 +52,7 @@ export default {
           title: 'Inicio de sesión exitoso',
           text: 'Has iniciado sesión correctamente',
         });
+        this.$store.commit('setLoggedIn', true);
         this.$router.push("/home");
       } catch (err) {
         this.error = err.message;
