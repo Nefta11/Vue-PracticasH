@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from '../views/LoginPage.vue';
 import RegisterPage from '../views/RegisterPage.vue';
 import HomePage from '../views/HomePage.vue';
-import store from '../store/store';
 
 const routes = [
   {
@@ -30,7 +29,8 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (!store.state.isLoggedIn) {
+    const token = localStorage.getItem('token');
+    if (!token) {
       next({ path: '/' });
     } else {
       next();

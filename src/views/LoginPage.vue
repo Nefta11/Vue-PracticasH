@@ -46,13 +46,14 @@ export default {
     async login() {
       try {
         const user = { email: this.email, password: this.password };
-        await loginUser(user);
+        const response = await loginUser(user);
+        const token = response.access_token;
+        localStorage.setItem('token', token);
         Swal.fire({
           icon: 'success',
           title: 'Inicio de sesión exitoso',
           text: 'Has iniciado sesión correctamente',
         });
-        this.$store.commit('setLoggedIn', true);
         this.$router.push("/home");
       } catch (err) {
         this.error = err.message;
