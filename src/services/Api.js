@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:8000';
+const API_URL = 'http://localhost:8000';
 
 export const createUser = async (user) => {
     try {
@@ -13,7 +13,10 @@ export const createUser = async (user) => {
 
 export const loginUser = async (user) => {
     try {
-        const response = await axios.post(`${API_URL}/login`, user);
+        const response = await axios.post(`${API_URL}/login`, {
+            email: user.email,
+            password: user.password
+        });
         return response.data;
     } catch (error) {
         throw new Error(error.response.data.detail || 'Correo electrónico o contraseña incorrectos');
