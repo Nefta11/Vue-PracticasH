@@ -55,7 +55,7 @@
       <p v-if="error" class="register-error">{{ error }}</p>
     </div>
     <div class="register-right-section">
-      <img src="/src/assets/log.jpg" alt="Imagen de Registro" class="register-image" />
+      <img src="/src/assets/reg.jpg" alt="Imagen de Registro" class="register-image" />
     </div>
   </div>
 </template>
