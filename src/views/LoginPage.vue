@@ -2,34 +2,34 @@
   <div class="container">
     <div class="left-section">
       <h2 class="branding">Blokchain</h2>
-      <h1 class="title">Revolution in Advertising</h1>
-      <p class="features">LOW FEES • CENSORSHIP RESISTANT • AI READY</p>
+      <h1 class="title">Revolución en Publicidad</h1>
+      <p class="features">BAJAS TARIFAS • RESISTENTE A LA CENSURA • LISTO PARA IA</p>
       <div class="logo">ADSHARES</div>
     </div>
     <div class="right-section">
-      <h2>Hello!</h2>
+      <h2>¡Hola!</h2>
       <p class="subtitle">
         Etiam pretium dapibus congue. Praesent a lorem erat. Morbi mollis
         posuere lacus, vel semper risus.
       </p>
       <form @submit.prevent="login" class="form">
         <div class="input-group">
-          <label for="email">Email Address</label>
+          <label for="email">Correo Electrónico</label>
           <input type="email" v-model="email" required />
         </div>
         <div class="input-group">
-          <label for="password">Password</label>
+          <label for="password">Contraseña</label>
           <input type="password" v-model="password" required />
         </div>
         <div class="options">
           <label
-            ><input type="checkbox" v-model="rememberMe" /> Remember me</label
+            ><input type="checkbox" v-model="rememberMe" /> Recuérdame</label
           >
-          <a href="#" class="forgot-password">Forgot password?</a>
+          <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
         </div>
-        <button type="submit" class="btn">Sign In</button>
+        <button type="submit" class="btn">Iniciar Sesión</button>
       </form>
-      <p class="signup">Don’t have an account? <a href="#">Sign Up</a></p>
+      <p class="signup">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
       <p v-if="error" class="error">{{ error }}</p>
     </div>
   </div>
