@@ -6,8 +6,7 @@
     <div class="right-section">
       <h2 class="hello">¡Hola!</h2>
       <p class="subtitle">
-        Etiam pretium dapibus congue. Praesent a lorem erat. Morbi mollis
-        posuere lacus, vel semper risus.
+        Bienvenido de nuevo, por favor ingresa tus datos para continuar.
       </p>
       <form @submit.prevent="login" class="form">
         <div class="input-group">
