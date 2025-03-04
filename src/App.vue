@@ -1,9 +1,9 @@
 <script setup>
-
+// No se requiere lógica adicional en este componente
 </script>
 
 <template>
-  <h1>Hola Edmundo</h1>
+  <router-view />
 </template>
 
 <style scoped>

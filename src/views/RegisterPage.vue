@@ -29,7 +29,7 @@
         </div>
         <button type="submit" class="register-button">Registrarse</button>
         <p class="login-text">
-          ¿Ya tienes una cuenta? <router-link to="/" class="login-link">Inicia sesión</router-link>
+          ¿Ya tienes una cuenta? <router-link to="/login" class="login-link">Inicia sesión</router-link>
         </p>
       </form>
     </div>

@@ -31,7 +31,7 @@
         </div>
         <button type="submit" class="login-button">Iniciar sesión</button>
         <p class="signup-text">
-          ¿No tienes una cuenta?<router-link to="/Register" class="signup-link"> Registrarse</router-link>
+          ¿No tienes una cuenta? <router-link to="/register" class="signup-link">Registrarse</router-link>
         </p>
       </form>
     </div>
