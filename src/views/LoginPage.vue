@@ -25,7 +25,7 @@
         </div>
         <button type="submit" class="btn">Iniciar Sesión</button>
       </form>
-      <p class="signup">¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+      <p class="signup">¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
       <p v-if="error" class="error">{{ error }}</p>
     </div>
   </div>
