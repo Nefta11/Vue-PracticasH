@@ -69,6 +69,13 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #0b1522; /* Color de fondo original */
+  margin: 0; /* Eliminar márgenes */
+  height: 100vh; /* Asegurar que el body ocupe toda la altura de la pantalla */
+  width: 100vw; /* Asegurar que el body ocupe toda la anchura de la pantalla */
+}
+
 .header-component {
   display: flex;
   justify-content: space-between;
