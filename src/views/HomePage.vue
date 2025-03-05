@@ -1,11 +1,5 @@
 <template>
   <HeaderComponent />
-  <body>
-    <div class="home-page-content">
-    <h1>Bienvenido a la Página de Inicio</h1>
-  </div>
-  </body>
-
 </template>
 
 <script>
