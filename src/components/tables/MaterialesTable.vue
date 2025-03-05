@@ -20,11 +20,15 @@
           <td>{{ material.tipoMaterial }}</td>
           <td>{{ material.marca }}</td>
           <td>{{ material.modelo }}</td>
-          <td>{{ material.idUsuario }}</td>
+          <td>{{ material.usuarioId }}</td>
           <td>{{ material.estado }}</td>
           <td>
-            <button class="btn-edit"><i class="fas fa-edit"></i></button>
-            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+            <button class="btn-edit">
+              <font-awesome-icon icon="edit" />
+            </button>
+            <button class="btn-delete">
+              <font-awesome-icon icon="trash" />
+            </button>
           </td>
         </tr>
       </tbody>
@@ -42,11 +46,15 @@
 <script>
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { getMaterials } from '@/services/Api';
 
 library.add(faUser, faEdit, faTrash);
 
 export default {
+  components: {
+    FontAwesomeIcon
+  },
   data() {
     return {
       columns: [
@@ -95,29 +103,54 @@ export default {
 .custom-table {
   width: 100%;
   border-collapse: collapse;
+  font-size: 1.2em;
+  margin: 20px 0;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .custom-table th, .custom-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
+  padding: 12px 15px;
+  text-align: center;
 }
 
 .custom-table th {
-  background-color: #f2f2f2;
-  text-align: left;
+  background-color: #0b1522;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.custom-table tr {
+  border-bottom: 1px solid #dddddd;
+}
+
+.custom-table tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.custom-table tr:last-of-type {
+  border-bottom: 2px solid #0b1522;
+}
+
+.custom-table tr.active-row {
+  font-weight: bold;
+  color: #0b1522;
+}
+
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
 }
 
 .btn-edit {
-  background: green;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
-  margin-right: 5px;
+  color: green;
 }
+
 .btn-delete {
-  background: red;
-  color: white;
-  padding: 5px;
-  border-radius: 5px;
+  color: red;
 }
 </style>
