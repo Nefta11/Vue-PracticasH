@@ -20,7 +20,7 @@
           <td>{{ material.tipoMaterial }}</td>
           <td>{{ material.marca }}</td>
           <td>{{ material.modelo }}</td>
-          <td>{{ material.usuarioId }}</td>
+          <td>{{ material.usuario }}</td>
           <td>{{ material.estado }}</td>
           <td>
             <button class="btn-edit">
