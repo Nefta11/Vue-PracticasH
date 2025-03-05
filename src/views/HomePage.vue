@@ -2,7 +2,7 @@
   <HeaderComponent />
   <body>
     <div class="home-page-content">
-      <h1>Bienvenido a la Página de Inicio</h1>
+      <h1>Bienvenido, ¡Que guapo te vez el dia de hoy!</h1>
       <MaterialesTable />
     </div>
   </body>
