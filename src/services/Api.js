@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api'; // Asegúrate de que esta URL coincida con la ruta del backend
+const API_URL = 'http://localhost:8000';
 
 export const createUser = async (user) => {
     try {
