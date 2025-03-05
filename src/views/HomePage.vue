@@ -3,6 +3,7 @@
   <body>
     <div class="home-page-content">
       <h1>Bienvenido, ¡Que guapo te vez el dia de hoy!</h1>
+      <h2>Realiza Tu Conculta Guapo De Las Que Deces:</h2>
       <div class="table-container">
         <MaterialesTable />
       </div>

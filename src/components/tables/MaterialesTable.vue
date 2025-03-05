@@ -1,6 +1,6 @@
 <template>
   <div class="p-5">
-    <h2 class="text-2xl font-bold text-blue-600 mb-4">Listado de Materiales</h2>
+    <h3 class="text-2xl font-bold text-blue-600 mb-4">Listado de Materiales</h3>
 
     <table class="custom-table">
       <thead>

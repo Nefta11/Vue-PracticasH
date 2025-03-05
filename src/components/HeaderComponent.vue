@@ -17,7 +17,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 library.add(faUser);
 
@@ -40,7 +40,9 @@ export default {
       const token = localStorage.getItem("token");
       if (token) {
         const payload = JSON.parse(atob(token.split(".")[1]));
-        return `${payload.nombre}` || "Usuario";
+        return (
+          `${payload.nombre}` + ` ` + `${payload.primerApellido}` || "Usuario"
+        );
       }
       return "Usuario";
     },
@@ -52,11 +54,11 @@ export default {
     },
     logout() {
       Swal.fire({
-        title: '¿Estás seguro de cerrar sesión?',
-        icon: 'warning',
+        title: "¿Estás seguro de cerrar sesión?",
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonText: 'Sí, cerrar sesión',
-        cancelButtonText: 'No, cancelar'
+        confirmButtonText: "Sí, cerrar sesión",
+        cancelButtonText: "No, cancelar",
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem("token");
