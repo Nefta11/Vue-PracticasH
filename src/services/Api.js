@@ -25,7 +25,7 @@ export const loginUser = async (user) => {
 
 export const getMaterials = async (token) => {
     try {
-        const response = await axios.get(`${API_URL}/materials/`, {
+        const response = await axios.get(`${API_URL}/api/materials/`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
