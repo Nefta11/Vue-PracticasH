@@ -1,27 +1,27 @@
 <template>
   <div class="p-5">
-    <h2 class="text-2xl font-bold text-blue-600 mb-4">Listado de Materiales</h2>
+    <h2 class="text-2xl font-bold text-blue-600 mb-4">Listado de Préstamos</h2>
 
     <table class="custom-table">
       <thead>
         <tr>
           <th>ID</th>
-          <th>Tipo Material</th>
-          <th>Marca</th>
-          <th>Modelo</th>
-          <th>UsuarioID</th>
-          <th>Estado</th>
+          <th>ID Usuario</th>
+          <th>ID Material</th>
+          <th>Fecha Préstamo</th>
+          <th>Fecha Devolución</th>
+          <th>Estado Préstamo</th>
           <th>Acción</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="material in materials" :key="material.id">
-          <td>{{ material.id }}</td>
-          <td>{{ material.tipoMaterial }}</td>
-          <td>{{ material.marca }}</td>
-          <td>{{ material.modelo }}</td>
-          <td>{{ material.usuario }}</td>
-          <td>{{ material.estado }}</td>
+        <tr v-for="prestamo in prestamos" :key="prestamo.id">
+          <td>{{ prestamo.id }}</td>
+          <td>{{ prestamo.idUsuario }}</td>
+          <td>{{ prestamo.idMaterial }}</td>
+          <td>{{ prestamo.fechaPrestamo }}</td>
+          <td>{{ prestamo.fechaDevolucion }}</td>
+          <td>{{ prestamo.estadoPrestamo }}</td>
           <td>
             <button class="btn-edit">
               <font-awesome-icon icon="edit" />
@@ -29,7 +29,7 @@
             <button class="btn-delete">
               <font-awesome-icon icon="trash" />
             </button>
-            <button class="btn-add" @click="agregarMaterial">
+            <button class="btn-add" @click="agregarPrestamo">
               <font-awesome-icon icon="plus" />
             </button>
           </td>
@@ -43,7 +43,7 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { getMaterials } from '@/services/Api';
+import { getLoans } from '@/services/Api';
 
 library.add(faUser, faEdit, faTrash, faPlus);
 
@@ -53,44 +53,28 @@ export default {
   },
   data() {
     return {
-      columns: [
-        { title: "ID", data: "id" },
-        { title: "Tipo", data: "tipoMaterial" },
-        { title: "Marca", data: "marca" },
-        { title: "Modelo", data: "modelo" },
-        { title: "Usuario", data: "idUsuario" },
-        { title: "Estado", data: "estado" },
-        {
-          title: "Acción",
-          data: null,
-          render: () => `
-            <button class="btn-edit"><i class="fas fa-edit"></i></button>
-            <button class="btn-delete"><i class="fas fa-trash"></i></button>
-          `,
-        },
-      ],
-      materials: [],
+      prestamos: [],
     };
   },
   methods: {
-    agregarMaterial() {
-      alert("Función para agregar nuevo material");
+    agregarPrestamo() {
+      alert("Función para agregar nuevo préstamo");
     },
-    async fetchMaterials() {
+    async fetchPrestamos() {
       try {
         const token = localStorage.getItem('token');
         if (!token) {
           throw new Error('Token no encontrado');
         }
-        const materials = await getMaterials(token);
-        this.materials = materials;
+        const prestamos = await getLoans(token);
+        this.prestamos = prestamos;
       } catch (error) {
         console.error(error.message);
       }
     },
   },
   created() {
-    this.fetchMaterials();
+    this.fetchPrestamos();
   },
 };
 </script>
@@ -100,7 +84,7 @@ export default {
   width: 100%;
   border-collapse: collapse;
   font-size: 1.2em;
-  margin: 20px 0;
+  margin: 30px 0;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -135,7 +119,7 @@ export default {
   color: #0b1522;
 }
 
-.btn-edit, .btn-delete {
+.btn-edit, .btn-delete, .btn-add {
   background: none;
   border: none;
   cursor: pointer;
@@ -148,5 +132,9 @@ export default {
 
 .btn-delete {
   color: red;
+}
+
+.btn-add {
+  color: blue;
 }
 </style>

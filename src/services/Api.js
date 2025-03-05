@@ -35,3 +35,16 @@ export const getMaterials = async (token) => {
         throw new Error(error.response.data.detail || 'Error al obtener los materiales');
     }
 };
+
+export const getLoans = async (token) => {
+    try {
+        const response = await axios.get(`${API_URL}/api/loans/`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al obtener los préstamos');
+    }
+};
