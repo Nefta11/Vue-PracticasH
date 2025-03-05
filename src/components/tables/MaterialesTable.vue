@@ -29,27 +29,23 @@
             <button class="btn-delete">
               <font-awesome-icon icon="trash" />
             </button>
+            <button class="btn-add" @click="agregarMaterial">
+              <font-awesome-icon icon="plus" />
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <button
-      @click="agregarMaterial"
-      class="mt-4 bg-blue-500 text-white px-4 py-2 rounded"
-    >
-      Agregar Material
-    </button>
   </div>
 </template>
 
 <script>
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { getMaterials } from '@/services/Api';
 
-library.add(faUser, faEdit, faTrash);
+library.add(faUser, faEdit, faTrash, faPlus);
 
 export default {
   components: {
@@ -70,6 +66,7 @@ export default {
           render: () => `
             <button class="btn-edit"><i class="fas fa-edit"></i></button>
             <button class="btn-delete"><i class="fas fa-trash"></i></button>
+            <button class="btn-add"><i class="fas fa-plus"></i></button>
           `,
         },
       ],
@@ -139,7 +136,7 @@ export default {
   color: #0b1522;
 }
 
-.btn-edit, .btn-delete {
+.btn-edit, .btn-delete, .btn-add {
   background: none;
   border: none;
   cursor: pointer;
@@ -152,5 +149,9 @@ export default {
 
 .btn-delete {
   color: red;
+}
+
+.btn-add {
+  color: blue;
 }
 </style>
