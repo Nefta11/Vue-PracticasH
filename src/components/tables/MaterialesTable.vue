@@ -6,10 +6,10 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Tipo</th>
+          <th>Tipo Material</th>
           <th>Marca</th>
           <th>Modelo</th>
-          <th>Usuario</th>
+          <th>UsuarioID</th>
           <th>Estado</th>
           <th>Acción</th>
         </tr>
