@@ -38,7 +38,7 @@ export const getMaterials = async (token) => {
 
 export const getLoans = async (token) => {
     try {
-        const response = await axios.get(`${API_URL}/api/loans/`, {
+        const response = await axios.get(`${API_URL}/api/loans`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
