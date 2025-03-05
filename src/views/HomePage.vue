@@ -2,19 +2,21 @@
   <HeaderComponent />
   <body>
     <div class="home-page-content">
-    <h1>Bienvenido a la Página de Inicio</h1>
-  </div>
+      <h1>Bienvenido a la Página de Inicio</h1>
+      <MaterialesTable />
+    </div>
   </body>
-
 </template>
 
 <script>
 import HeaderComponent from '@/components/HeaderComponent.vue';
+import MaterialesTable from '@/components/tables/MaterialesTable.vue';
 
 export default {
   name: 'HomePage',
   components: {
-    HeaderComponent
+    HeaderComponent,
+    MaterialesTable
   }
 };
 </script>

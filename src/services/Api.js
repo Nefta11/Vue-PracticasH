@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://localhost:8000/api'; // Asegúrate de que esta URL coincida con la ruta del backend
 
 export const createUser = async (user) => {
     try {
@@ -20,5 +20,18 @@ export const loginUser = async (user) => {
         return response.data;
     } catch (error) {
         throw new Error(error.response.data.detail || 'Correo electrónico o contraseña incorrectos');
+    }
+};
+
+export const getMaterials = async (token) => {
+    try {
+        const response = await axios.get(`${API_URL}/materials/`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al obtener los materiales');
     }
 };
