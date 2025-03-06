@@ -61,3 +61,29 @@ export const deleteLoan = async (loanId, token) => {
         throw new Error(error.response.data.detail || 'Error al eliminar el préstamo');
     }
 };
+
+export const createLoan = async (loan, token) => {
+    try {
+        const response = await axios.post(`${API_URL}/api/loans/`, loan, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al crear el préstamo');
+    }
+};
+
+export const updateLoan = async (loanId, loan, token) => {
+    try {
+        const response = await axios.put(`${API_URL}/api/loans/${loanId}`, loan, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al actualizar el préstamo');
+    }
+};

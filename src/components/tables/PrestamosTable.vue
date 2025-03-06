@@ -17,20 +17,61 @@
       <tbody>
         <tr v-for="prestamo in prestamos" :key="prestamo.id">
           <td>{{ prestamo.id }}</td>
-          <td>{{ prestamo.nombreUsuario }}</td>
-          <td>{{ prestamo.tipoMaterial }}</td>
-          <td>{{ prestamo.fechaPrestamo }}</td>
-          <td>{{ prestamo.fechaDevolucion }}</td>
-          <td>{{ prestamo.estadoPrestamo }}</td>
           <td>
-            <button class="btn-edit">
+            <span v-if="prestamo.id !== prestamoEditando.id">{{ prestamo.nombreUsuario }}</span>
+            <input v-else v-model="prestamoEditando.idUsuario" type="number" class="input-field" />
+          </td>
+          <td>
+            <span v-if="prestamo.id !== prestamoEditando.id">{{ prestamo.tipoMaterial }}</span>
+            <input v-else v-model="prestamoEditando.idMaterial" type="number" class="input-field" />
+          </td>
+          <td>
+            <span v-if="prestamo.id !== prestamoEditando.id">{{ prestamo.fechaPrestamo }}</span>
+            <input v-else v-model="prestamoEditando.fechaPrestamo" type="date" class="input-field" />
+          </td>
+          <td>
+            <span v-if="prestamo.id !== prestamoEditando.id">{{ prestamo.fechaDevolucion }}</span>
+            <input v-else v-model="prestamoEditando.fechaDevolucion" type="date" class="input-field" />
+          </td>
+          <td>
+            <span v-if="prestamo.id !== prestamoEditando.id">{{ prestamo.estadoPrestamo }}</span>
+            <select v-else v-model="prestamoEditando.estadoPrestamo" class="input-field">
+              <option value="Activo">Activo</option>
+              <option value="Devuelto">Devuelto</option>
+              <option value="Vencido">Vencido</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-edit" @click="editarPrestamo(prestamo)" v-if="prestamo.id !== prestamoEditando.id">
               <font-awesome-icon icon="edit" />
             </button>
-            <button class="btn-delete" @click="eliminarPrestamo(prestamo.id)">
+            <button class="btn-delete" @click="eliminarPrestamo(prestamo.id)" v-if="prestamo.id !== prestamoEditando.id">
               <font-awesome-icon icon="trash" />
             </button>
-            <button class="btn-add" @click="agregarPrestamo">
+            <button class="btn-add" @click="mostrarFormularioCrear" v-if="prestamo.id !== prestamoEditando.id">
               <font-awesome-icon icon="plus" />
+            </button>
+            <button class="btn-save" @click="guardarPrestamo(prestamo.id)" v-if="prestamo.id === prestamoEditando.id">
+              <font-awesome-icon icon="save" />
+            </button>
+          </td>
+        </tr>
+        <tr v-if="mostrarFormulario">
+          <td></td>
+          <td><input v-model="nuevoPrestamo.idUsuario" type="number" placeholder="ID Usuario" class="input-field" /></td>
+          <td><input v-model="nuevoPrestamo.idMaterial" type="number" placeholder="ID Material" class="input-field" /></td>
+          <td><input v-model="nuevoPrestamo.fechaPrestamo" type="date" placeholder="Fecha Préstamo" class="input-field" /></td>
+          <td><input v-model="nuevoPrestamo.fechaDevolucion" type="date" placeholder="Fecha Devolución" class="input-field" /></td>
+          <td>
+            <select v-model="nuevoPrestamo.estadoPrestamo" class="input-field">
+              <option value="Activo">Activo</option>
+              <option value="Devuelto">Devuelto</option>
+              <option value="Vencido">Vencido</option>
+            </select>
+          </td>
+          <td>
+            <button class="btn-save" @click="crearPrestamo">
+              <font-awesome-icon icon="save" />
             </button>
           </td>
         </tr>
@@ -41,12 +82,12 @@
 
 <script>
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faEdit, faTrash, faPlus, faSave } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { getLoans, deleteLoan } from '@/services/Api';
+import { getLoans, deleteLoan, createLoan, updateLoan } from '@/services/Api';
 import Swal from 'sweetalert2';
 
-library.add(faUser, faEdit, faTrash, faPlus);
+library.add(faUser, faEdit, faTrash, faPlus, faSave);
 
 export default {
   components: {
@@ -55,12 +96,18 @@ export default {
   data() {
     return {
       prestamos: [],
+      mostrarFormulario: false,
+      nuevoPrestamo: {
+        idUsuario: null,
+        idMaterial: null,
+        fechaPrestamo: '',
+        fechaDevolucion: '',
+        estadoPrestamo: 'Activo'
+      },
+      prestamoEditando: {}
     };
   },
   methods: {
-    agregarPrestamo() {
-      alert("Función para agregar nuevo préstamo");
-    },
     async fetchPrestamos() {
       try {
         const token = localStorage.getItem('token');
@@ -105,14 +152,61 @@ export default {
             'error'
           );
         }
-      } else {
+      }
+    },
+    mostrarFormularioCrear() {
+      this.mostrarFormulario = true;
+    },
+    async crearPrestamo() {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token no encontrado');
+        }
+        const prestamo = await createLoan(this.nuevoPrestamo, token);
+        this.prestamos.push(prestamo);
+        this.mostrarFormulario = false;
         Swal.fire(
-          'Cancelado',
-          'Asegúrate de que el ID del préstamo que estás intentando eliminar sea correcto.',
-          'info'
+          '¡Creado!',
+          'El préstamo ha sido creado con éxito.',
+          'success'
+        );
+      } catch (error) {
+        console.error(error.message);
+        Swal.fire(
+          'Error',
+          'Hubo un problema al crear el préstamo.',
+          'error'
         );
       }
     },
+    editarPrestamo(prestamo) {
+      this.prestamoEditando = { ...prestamo };
+    },
+    async guardarPrestamo(prestamoId) {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Token no encontrado');
+        }
+        const prestamoActualizado = await updateLoan(prestamoId, this.prestamoEditando, token);
+        const index = this.prestamos.findIndex(prestamo => prestamo.id === prestamoId);
+        this.prestamos[index] = prestamoActualizado;
+        this.prestamoEditando = {};
+        Swal.fire(
+          '¡Actualizado!',
+          'El préstamo ha sido actualizado con éxito.',
+          'success'
+        );
+      } catch (error) {
+        console.error(error.message);
+        Swal.fire(
+          'Error',
+          'Hubo un problema al actualizar el préstamo.',
+          'error'
+        );
+      }
+    }
   },
   created() {
     this.fetchPrestamos();
@@ -160,7 +254,7 @@ export default {
   color: #0b1522;
 }
 
-.btn-edit, .btn-delete, .btn-add {
+.btn-edit, .btn-delete, .btn-add, .btn-save {
   background: none;
   border: none;
   cursor: pointer;
@@ -177,5 +271,18 @@ export default {
 
 .btn-add {
   color: blue;
+}
+
+.btn-save {
+  color: orange;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font-size: 1em;
 }
 </style>
