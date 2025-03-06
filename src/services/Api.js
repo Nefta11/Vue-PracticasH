@@ -48,3 +48,16 @@ export const getLoans = async (token) => {
         throw new Error(error.response.data.detail || 'Error al obtener los préstamos');
     }
 };
+
+export const deleteLoan = async (loanId, token) => {
+    try {
+        const response = await axios.delete(`${API_URL}/api/loans/${loanId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al eliminar el préstamo');
+    }
+};

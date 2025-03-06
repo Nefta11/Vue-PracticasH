@@ -26,7 +26,7 @@
             <button class="btn-edit">
               <font-awesome-icon icon="edit" />
             </button>
-            <button class="btn-delete">
+            <button class="btn-delete" @click="eliminarPrestamo(prestamo.id)">
               <font-awesome-icon icon="trash" />
             </button>
             <button class="btn-add" @click="agregarPrestamo">
@@ -43,7 +43,8 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEdit, faTrash, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { getLoans } from '@/services/Api';
+import { getLoans, deleteLoan } from '@/services/Api';
+import Swal from 'sweetalert2';
 
 library.add(faUser, faEdit, faTrash, faPlus);
 
@@ -70,6 +71,46 @@ export default {
         this.prestamos = prestamos;
       } catch (error) {
         console.error(error.message);
+      }
+    },
+    async eliminarPrestamo(prestamoId) {
+      const result = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo'
+      });
+
+      if (result.isConfirmed) {
+        try {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            throw new Error('Token no encontrado');
+          }
+          await deleteLoan(prestamoId, token);
+          this.prestamos = this.prestamos.filter(prestamo => prestamo.id !== prestamoId);
+          Swal.fire(
+            '¡Eliminado!',
+            'El préstamo ha sido eliminado.',
+            'success'
+          );
+        } catch (error) {
+          console.error(error.message);
+          Swal.fire(
+            'Error',
+            'Hubo un problema al eliminar el préstamo.',
+            'error'
+          );
+        }
+      } else {
+        Swal.fire(
+          'Cancelado',
+          'Asegúrate de que el ID del préstamo que estás intentando eliminar sea correcto.',
+          'info'
+        );
       }
     },
   },
