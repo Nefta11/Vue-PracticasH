@@ -87,3 +87,42 @@ export const updateLoan = async (loanId, loan, token) => {
         throw new Error(error.response.data.detail || 'Error al actualizar el préstamo');
     }
 };
+
+export const createMaterial = async (material, token) => {
+    try {
+        const response = await axios.post(`${API_URL}/api/materials/`, material, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al crear el material');
+    }
+};
+
+export const updateMaterial = async (materialId, material, token) => {
+    try {
+        const response = await axios.put(`${API_URL}/api/materials/${materialId}`, material, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al actualizar el material');
+    }
+};
+
+export const deleteMaterial = async (materialId, token) => {
+    try {
+        const response = await axios.delete(`${API_URL}/api/materials/${materialId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response.data.detail || 'Error al eliminar el material');
+    }
+};
