@@ -9,7 +9,7 @@
           <th>Tipo Material</th>
           <th>Marca</th>
           <th>Modelo</th>
-          <th>UsuarioID</th>
+          <th>Usuario</th>
           <th>Estado</th>
           <th>Acción</th>
         </tr>
@@ -30,7 +30,7 @@
             <input v-else v-model="materialEditando.modelo" type="text" class="input-field" />
           </td>
           <td>
-            <span v-if="material.id !== materialEditando.id">{{ material.idUsuario }}</span>
+            <span v-if="material.id !== materialEditando.id">{{ material.usuario }}</span>
             <input v-else v-model="materialEditando.idUsuario" type="number" class="input-field" />
           </td>
           <td>
