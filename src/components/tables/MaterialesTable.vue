@@ -30,8 +30,8 @@
             <input v-else v-model="materialEditando.modelo" type="text" class="input-field" />
           </td>
           <td>
-            <span v-if="material.id !== materialEditando.id">{{ material.usuario }}</span>
-            <input v-else v-model="materialEditando.usuario" type="text" class="input-field" />
+            <span v-if="material.id !== materialEditando.id">{{ material.idUsuario }}</span>
+            <input v-else v-model="materialEditando.idUsuario" type="number" class="input-field" />
           </td>
           <td>
             <span v-if="material.id !== materialEditando.id">{{ material.estado }}</span>
@@ -61,7 +61,7 @@
           <td><input v-model="nuevoMaterial.tipoMaterial" type="text" placeholder="Tipo Material" class="input-field" /></td>
           <td><input v-model="nuevoMaterial.marca" type="text" placeholder="Marca" class="input-field" /></td>
           <td><input v-model="nuevoMaterial.modelo" type="text" placeholder="Modelo" class="input-field" /></td>
-          <td><input v-model="nuevoMaterial.usuario" type="text" placeholder="Usuario" class="input-field" /></td>
+          <td><input v-model="nuevoMaterial.idUsuario" type="number" placeholder="UsuarioID" class="input-field" /></td>
           <td>
             <select v-model="nuevoMaterial.estado" class="input-field">
               <option value="Disponible">Disponible</option>
@@ -101,7 +101,7 @@ export default {
         tipoMaterial: '',
         marca: '',
         modelo: '',
-        usuario: '',
+        idUsuario: null,
         estado: 'Disponible'
       },
       materialEditando: {}
